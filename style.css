@@ -1,0 +1,26 @@
+body{
+    box-sizing: content-box;
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 60px 1fr;
+
+}
+
+.head{
+    width: 100%;
+    background-color: #EE4E34;
+    font-size: 32px;
+    font-weight: 700;
+    border-bottom: 1px solid orangered;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: rgb(221, 226, 226);
+}
+p{
+    margin-left: 10px;
+}
+.library{
+    background-color: #FCEDDA;
+}
