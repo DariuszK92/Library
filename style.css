@@ -4,6 +4,7 @@ body{
     min-height: 100vh;
     display: grid;
     grid-template-rows: 60px 1fr;
+    background-color: #FCEDDA;
 
 }
 
@@ -22,5 +23,16 @@ p{
     margin-left: 10px;
 }
 .library{
-    background-color: #FCEDDA;
+    justify-self: center;
+    display: grid;
+    justify-content: center;
+    max-width: 800px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+    gap: 40px;
+
+}
+
+.book{
+    height: 200px;
+    background-color: blue;
 }
