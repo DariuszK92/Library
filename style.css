@@ -1,38 +1,147 @@
-body{
-    box-sizing: content-box;
-    margin: 0;
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: 60px 1fr;
-    background-color: #FCEDDA;
-
-}
-
-.head{
-    width: 100%;
-    background-color: #EE4E34;
-    font-size: 32px;
-    font-weight: 700;
-    border-bottom: 1px solid orangered;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    color: rgb(221, 226, 226);
-}
-p{
-    margin-left: 10px;
-}
-.library{
-    justify-self: center;
-    display: grid;
-    justify-content: center;
-    max-width: 800px;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
-    gap: 40px;
-
-}
-
-.book{
-    height: 200px;
-    background-color: blue;
-}
+*{
+    --text-color: rgb(241, 256, 246);
+    --primary-color:#FCEDDA;
+    --secondary-color:#E98704;
+      -webkit-overflow-scrolling: none;
+      overflow-x: hidden;
+    
+  }
+  
+  body{
+      box-sizing: border-box;
+      margin: 0;
+      width:100%;
+      min-height: 100%;
+      display: grid;
+      grid-template-rows: 70px 1fr;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      position:relative;
+  
+  }
+  
+  .head{
+      width: 100vw;
+      background-color: #EE4E34;
+      font-size: 32px;
+      font-weight: 700;
+      border-bottom: 1px solid orangered;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      overflow: hidden;
+     
+  }
+  p{
+      margin-left: 10px;
+  }
+  button, input[type="submit"]{
+    all: unset;
+    background-color: var(--secondary-color);
+    padding: 8px;
+    border-radius:5px;
+    color: var(--text-color);
+    border: gray 2px solid;
+    font-size:20px;
+    cursor: pointer;
+    margin-right:20px;
+  }
+  input[type="submit"]{
+    margin-right:0;
+  }
+  
+  button:hover, input[type="submit"]:hover, button:focus, input[type="submit"]:focus{
+    opacity:0.8;
+    border: 3px black solid;
+   
+  }
+  
+  .library{
+      justify-self: center;
+      display: grid;
+      justify-content: center;
+      width:100%;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 320px));
+      gap: 30px;
+      margin-top:40px;
+      margin-bottom:40px;
+  }
+  
+  .book{
+      height: 200px;
+      background-color: var(--secondary-color);
+      display: flex;
+      flex-direction:column;
+      border-radius:10px;
+      border: gray 3px solid;
+    margin-left:10px;
+     margin-right:10px;
+    
+       
+  }
+  .book > h2{
+    align-self:center;
+  }
+  
+  /*fsdfffffffffffffffffffffffffff*/
+  
+  #overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.7); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+  
+  #login{
+      background-color: #fff;
+      width: clamp(250px, 40vw, 400px);
+      margin: auto;
+      border: 3px solid var(--secondary-color);
+    color: var(--secondary-color);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      position: fixed;
+    font-weight:600;
+       right: 0;
+    left: 0;
+    top:calc(50vh - 150px) !important;
+    margin: auto;
+    z-index:5;
+  }
+  #overlay,#login{display: none;}
+  
+  #cross{
+      position: absolute;
+      right: -20px;
+     top: 0px;
+     color: var(--secondary-color);
+      font-size: 22;
+      font-weight: bold;
+      background-color: transparent;
+      border: 0
+  }
+  h1{margin-top: 0px}
+  form,input[type="button"]{margin:0 !important}
+  #title,#author,#pages {
+      background-color: #fff;
+    width: 90%;
+      display: block;
+      border: 2px solid var(--secondary-color);
+      border-radius: 10px;
+      padding: 7px;
+      margin: auto;
+      margin-bottom: 15px
+  }
+  
+  #read, .read{
+       display: inline-block;
+    font-size:18px;
+   }

@@ -5,11 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/b371bd7be1.js" crossorigin="anonymous"></script>    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="overlay"></div>
+            <div id="login">
+                <button id="cross">&cross;</button>
+                <h1>Add new book</h1>
+                <form class="form">
+                    <input type="text" placeholder="Title" name="title" id="title" minlength="2" required/>
+                    <input type="text" placeholder="Author" name="author" id="author"/>
+                    <input type="number" min="1" max="2000" id="pages" name="pages" placeholder="pages"/>
+                    <input type="checkbox" id="read" name="read" checked>
+                    <label for="read" class="read">Have you read the book?</label><br><br>               
+                    <input type="submit" value="Add to library" id="submit"/>
+                </form>
+        </div>
+  
+  
     <div class="head">
         <p class="logo">Your Library</p>
+      <button class="add">+Add book</button>
     </div>
     <div class="library">
         
