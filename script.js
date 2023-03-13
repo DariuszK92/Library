@@ -26,20 +26,43 @@ function addNewBook() {
     myLibrary.forEach((book) => {
         const newDiv = document.createElement('div');
         newDiv.classList.add('book');
-        LIBRARY.appendChild(newDiv);
+        if (book.read === 'off') {
+            newDiv.classList.add('off');
+            LIBRARY.appendChild(newDiv);
+        } else {
+            LIBRARY.appendChild(newDiv);
+        }
+
         const newTitle = document.createElement('h2');
         newTitle.innerText = `${book.title}`;
         newDiv.appendChild(newTitle);
-        const icon = document.createElement('i');
-        icon.classList.add('fa-solid');
-        icon.classList.add('fa-trash-can');
-        newDiv.append(icon);
         const newAuthor = document.createElement('p');
         newAuthor.innerText = `Author: ${book.author}`;
         newDiv.appendChild(newAuthor);
         const newPages = document.createElement('p');
         newPages.innerText = `Pages: ${book.pages}`;
         newDiv.appendChild(newPages);
+        const icon = document.createElement('i');
+        icon.classList.add('fa-solid');
+        icon.classList.add('fa-trash-can');
+        icon.tabIndex = 0;
+        newDiv.append(icon);
+        const toggleLabel = document.createElement('label');
+        toggleLabel.classList.add('switch');
+        newDiv.append(toggleLabel);
+        const toggle = document.createElement('input');
+        toggle.type = 'checkbox';
+        if (book.read === 'on') {
+            toggle.checked = true;
+            toggleLabel.append(toggle);
+        } else {
+            toggle.checked = false;
+            toggleLabel.append(toggle);
+        }
+        const toggleSpan = document.createElement('span');
+        toggleSpan.classList.add('slider');
+        toggleSpan.classList.add('round');
+        toggleLabel.append(toggleSpan);
     });
 }
 
@@ -49,7 +72,13 @@ submit.addEventListener('click', (event) => {
     event.preventDefault();
     const formData = new FormData(formEl);
     const data = Object.fromEntries(formData);
-    myLibrary.push(data);
+    if (formData.get('read') === 'on') {
+        myLibrary.push(data);
+    } else {
+        data.read = 'off';
+        myLibrary.push(data);
+    }
+
     addNewBook();
     closeOverlay();
     formEl.reset();

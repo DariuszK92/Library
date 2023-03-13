@@ -3,8 +3,11 @@
     --primary-color:#FCEDDA;
     --secondary-color:#E98704;
       -webkit-overflow-scrolling: none;
-      overflow-x: hidden;
-    
+      overflow-x: hidden;    
+  }
+
+  h2,p,i{
+    overflow: hidden;
   }
   
   body{
@@ -32,9 +35,7 @@
       overflow: hidden;
      
   }
-  p{
-      margin-left: 10px;
-  }
+  
   button, input[type="submit"]{
     all: unset;
     background-color: var(--secondary-color);
@@ -76,6 +77,8 @@
       border: gray 3px solid;
     margin-left:10px;
      margin-right:10px;
+     overflow: hidden;
+     position: relative;
     
        
   }
@@ -145,3 +148,93 @@
        display: inline-block;
     font-size:18px;
    }
+
+   .book p, .book i{
+    margin: 10px 0 0 20px;
+    font-size: 19px;
+   }
+
+   .book i{
+    margin-top: 30px;
+    display: inline-block;
+    width:17px;
+    padding: 3px;
+   }
+
+   .book i:hover, .book i:focus{
+    color:red;
+   }
+
+   .off{
+    opacity: 0.7;
+   }
+
+   /*******************************************
+                TOGGLE SWITCH
+    *****************************************/
+   /* The switch - the box around the slider */
+.switch {
+    position: absolute;
+    right: 10px;
+    bottom:10px;
+    display: inline-block;
+    width: 60px;
+    height: 28px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(202, 189, 189);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border: 2px solid gray;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 2px;
+    bottom: 1px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color:  #EED971FF;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #bdb0a9;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(30px);
+    -ms-transform: translateX(30px);
+    transform: translateX(30px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+   
