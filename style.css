@@ -1,240 +1,244 @@
 *{
-    --text-color: rgb(241, 256, 246);
-    --primary-color:#FCEDDA;
-    --secondary-color:#E98704;
-      -webkit-overflow-scrolling: none;
-      overflow-x: hidden;    
-  }
+  --text-color: rgb(241, 256, 246);
+  --primary-color:#FCEDDA;
+  --secondary-color:#E98704;
+    -webkit-overflow-scrolling: none;
+    overflow-x: hidden;    
+}
 
-  h2,p,i{
-    overflow: hidden;
-  }
-  
-  body{
-      box-sizing: border-box;
-      margin: 0;
-      width:100%;
-      min-height: 100%;
-      display: grid;
-      grid-template-rows: 70px 1fr;
-      background-color: var(--primary-color);
-      color: var(--text-color);
-      position:relative;
-  
-  }
-  
-  .head{
-      width: 100vw;
-      background-color: #EE4E34;
-      font-size: 32px;
-      font-weight: 700;
-      border-bottom: 1px solid orangered;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      overflow: hidden;
-     
-  }
-  
-  button, input[type="submit"]{
-    all: unset;
-    background-color: var(--secondary-color);
-    padding: 8px;
-    border-radius:5px;
+h2,p,i{
+  overflow: hidden;
+}
+
+body{
+    box-sizing: border-box;
+    margin: 0;
+    width:100%;
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 70px 1fr;
+    background-color: var(--primary-color);
     color: var(--text-color);
-    border: gray 2px solid;
-    font-size:20px;
-    cursor: pointer;
-    margin-right:20px;
-  }
-  input[type="submit"]{
-    margin-right:0;
-  }
-  
-  button:hover, input[type="submit"]:hover, button:focus, input[type="submit"]:focus{
-    opacity:0.8;
-    border: 3px black solid;
+    position:relative;
+
+}
+
+.head{
+    width: 100vw;
+    background-color: #EE4E34;
+    font-size: 32px;
+    font-weight: 700;
+    border-bottom: 1px solid orangered;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
    
-  }
+}
+
+button, input[type="submit"]{
+  all: unset;
+  background-color: var(--secondary-color);
+  padding: 8px;
+  border-radius:5px;
+  color: var(--text-color);
+  border: gray 2px solid;
+  font-size:20px;
+  cursor: pointer;
+  margin-right:20px;
+}
+input[type="submit"]{
+  margin-right:0;
+}
+
+button:hover, input[type="submit"]:hover, button:focus, input[type="submit"]:focus{
+  opacity:0.8;
+  border: 3px black solid;
+ 
+}
+
+.library{
+    justify-self: center;
+    display: grid;
+    justify-content: center;
+    width:100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 320px));
+    gap: 30px;
+    margin-top:40px;
+    margin-bottom:40px;
+}
+
+.book{
+    height: 200px;
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction:column;
+    border-radius:10px;
+    border: gray 3px solid;
+  margin-left:10px;
+   margin-right:10px;
+   overflow: hidden;
+   position: relative;
   
-  .library{
-      justify-self: center;
-      display: grid;
-      justify-content: center;
-      width:100%;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 320px));
-      gap: 30px;
-      margin-top:40px;
-      margin-bottom:40px;
-  }
-  
-  .book{
-      height: 200px;
-      background-color: var(--secondary-color);
-      display: flex;
-      flex-direction:column;
-      border-radius:10px;
-      border: gray 3px solid;
-    margin-left:10px;
-     margin-right:10px;
-     overflow: hidden;
-     position: relative;
-    
-       
-  }
-  .book > h2{
-    align-self:center;
-  }
-  
-  /*fsdfffffffffffffffffffffffffff*/
-  
-  #overlay {
-    position: fixed; /* Sit on top of the page content */
-    display: none; /* Hidden by default */
-    width: 100%; /* Full width (cover the whole page) */
-    height: 100%; /* Full height (cover the whole page) */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.7); /* Black background with opacity */
-    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
-  }
-  
-  #login{
-      background-color: #fff;
-      width: clamp(250px, 40vw, 400px);
-      margin: auto;
-      border: 3px solid var(--secondary-color);
-    color: var(--secondary-color);
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-      position: fixed;
-    font-weight:600;
-       right: 0;
-    left: 0;
-    top:calc(50vh - 150px) !important;
+     
+}
+.book > h2{
+  align-self:center;
+}
+
+/*fsdfffffffffffffffffffffffffff*/
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.7); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+#login{
+    background-color: #fff;
+    width: clamp(250px, 40vw, 400px);
     margin: auto;
-    z-index:5;
-  }
-  #overlay,#login{display: none;}
-  
-  #cross{
-      position: absolute;
-      right: -20px;
-     top: 0px;
-     color: var(--secondary-color);
-      font-size: 22;
-      font-weight: bold;
-      background-color: transparent;
-      border: 0
-  }
-  h1{margin-top: 0px}
-  form,input[type="button"]{margin:0 !important}
-  #title,#author,#pages {
-      background-color: #fff;
-    width: 90%;
-      display: block;
-      border: 2px solid var(--secondary-color);
-      border-radius: 10px;
-      padding: 7px;
-      margin: auto;
-      margin-bottom: 15px
-  }
-  
-  #read, .read{
-       display: inline-block;
-    font-size:18px;
-   }
+    border: 3px solid var(--secondary-color);
+  color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+  font-weight:600;
+     right: 0;
+  left: 0;
+  top:calc(50vh - 150px) !important;
+  margin: auto;
+  z-index:5;
+}
+#overlay,#login{display: none;}
 
-   .book p, .book i{
-    margin: 10px 0 0 20px;
-    font-size: 19px;
-   }
+#cross{
+    position: absolute;
+    right: -20px;
+   top: 0px;
+   color: var(--secondary-color);
+    font-size: 22;
+    font-weight: bold;
+    background-color: transparent;
+    border: 0
+}
+h1{margin-top: 0px}
+form,input[type="button"]{margin:0 !important}
+#title,#author,#pages {
+    background-color: #fff;
+  width: 90%;
+    display: block;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: 7px;
+    margin: auto;
+    margin-bottom: 15px
+}
 
-   .book i{
-    margin-top: 30px;
-    display: inline-block;
-    width:17px;
-    padding: 3px;
-   }
+#read, .read{
+     display: inline-block;
+  font-size:18px;
+ }
 
-   .book i:hover, .book i:focus{
-    color:red;
-   }
+ .book p, .book i{
+  margin: 10px 0 0 20px;
+  font-size: 19px;
+ }
 
-   .off{
-    opacity: 0.7;
-   }
+ .book i{
+  margin-top: 30px;
+  display: inline-block;
+  width:17px;
+  padding: 3px;
+ }
 
-   /*******************************************
-                TOGGLE SWITCH
-    *****************************************/
-   /* The switch - the box around the slider */
+ .book i:hover, .book i:focus{
+  color:red;
+ }
+
+ .off{
+  opacity: 0.7;
+ }
+
+ /*******************************************
+              TOGGLE SWITCH
+  *****************************************/
+ /* The switch - the box around the slider */
 .switch {
-    position: absolute;
-    right: 10px;
-    bottom:10px;
-    display: inline-block;
-    width: 60px;
-    height: 28px;
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgb(202, 189, 189);
-    -webkit-transition: .4s;
-    transition: .4s;
-    border: 2px solid gray;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 22px;
-    width: 22px;
-    left: 2px;
-    bottom: 1px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color:  #EED971FF;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #bdb0a9;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(30px);
-    -ms-transform: translateX(30px);
-    transform: translateX(30px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
-   
+  position: absolute;
+  right: 10px;
+  bottom:10px;
+  display: inline-block;
+  width: 56px;
+  height: 28px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(202, 189, 189);
+  -webkit-transition: .4s;
+  transition: .4s;
+  border: 2px solid gray;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 0px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color:  #EED971FF;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #bdb0a9;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(30px);
+  -ms-transform: translateX(30px);
+  transform: translateX(30px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+p.logo{
+margin-left:15px;
+}
+ 

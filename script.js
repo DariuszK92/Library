@@ -11,11 +11,6 @@ function closeOverlay() {
 
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-    // eslint-disable-next-line no-unused-expressions, no-sequences
-    (this.title = title), (this.author = author), (this.pages = pages), (this.read = read);
-}
-
 function addNewBook() {
     function removeAllChildNodes(parent) {
         while (parent.firstChild) {
@@ -26,6 +21,7 @@ function addNewBook() {
     myLibrary.forEach((book) => {
         const newDiv = document.createElement('div');
         newDiv.classList.add('book');
+        newDiv.dataset.indexNumber = myLibrary.indexOf(book);
         if (book.read === 'off') {
             newDiv.classList.add('off');
             LIBRARY.appendChild(newDiv);
@@ -46,6 +42,11 @@ function addNewBook() {
         icon.classList.add('fa-solid');
         icon.classList.add('fa-trash-can');
         icon.tabIndex = 0;
+        const index = myLibrary.indexOf(book);
+        icon.addEventListener('click', () => {
+            myLibrary.splice(index, 1);
+            addNewBook();
+        });
         newDiv.append(icon);
         const toggleLabel = document.createElement('label');
         toggleLabel.classList.add('switch');
@@ -59,6 +60,15 @@ function addNewBook() {
             toggle.checked = false;
             toggleLabel.append(toggle);
         }
+        toggle.addEventListener('click', () => {
+            if (book.read === 'on') {
+                newDiv.classList.add('off');
+                book.read = 'off';
+            } else {
+                newDiv.classList.remove('off');
+                book.read = 'on';
+            }
+        });
         const toggleSpan = document.createElement('span');
         toggleSpan.classList.add('slider');
         toggleSpan.classList.add('round');
@@ -70,18 +80,28 @@ const formEl = document.querySelector('.form');
 const submit = document.querySelector('#submit');
 submit.addEventListener('click', (event) => {
     event.preventDefault();
-    const formData = new FormData(formEl);
-    const data = Object.fromEntries(formData);
-    if (formData.get('read') === 'on') {
-        myLibrary.push(data);
-    } else {
-        data.read = 'off';
-        myLibrary.push(data);
-    }
 
-    addNewBook();
-    closeOverlay();
-    formEl.reset();
+    const formData = new FormData(formEl);
+    const ObjIdToFind = formData.get('title');
+    const isObjectPresent = myLibrary.find((o) => o.title === ObjIdToFind);
+    if (isObjectPresent) {
+        // As find return object else undefined
+        alert('Book with this title already exists!');
+        addNewBook();
+        closeOverlay();
+        formEl.reset();
+    } else {
+        const data = Object.fromEntries(formData);
+        if (formData.get('read') === 'on') {
+            myLibrary.push(data);
+        } else {
+            data.read = 'off';
+            myLibrary.push(data);
+        }
+        addNewBook();
+        closeOverlay();
+        formEl.reset();
+    }
 });
 
 /// ////////////////////////////
