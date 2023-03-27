@@ -11,6 +11,15 @@ function closeOverlay() {
 
 const myLibrary = [];
 
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+}
+
 function addNewBook() {
     function removeAllChildNodes(parent) {
         while (parent.firstChild) {
@@ -78,10 +87,11 @@ function addNewBook() {
 
 const formEl = document.querySelector('.form');
 const submit = document.querySelector('#submit');
+
 submit.addEventListener('click', (event) => {
     event.preventDefault();
-
     const formData = new FormData(formEl);
+    console.log(formData.get('read'));
     const ObjIdToFind = formData.get('title');
     const isObjectPresent = myLibrary.find((o) => o.title === ObjIdToFind);
     if (isObjectPresent) {
@@ -91,13 +101,17 @@ submit.addEventListener('click', (event) => {
         closeOverlay();
         formEl.reset();
     } else {
-        const data = Object.fromEntries(formData);
-        if (formData.get('read') === 'on') {
+        const tit = formData.get('title');
+        const aut = formData.get('author');
+        const pag = formData.get('pages');
+        if (formData.get('read') === null) {
+            const data = new Book(tit, aut, pag, 'off');
             myLibrary.push(data);
         } else {
-            data.read = 'off';
+            const data = new Book(tit, aut, pag, 'on');
             myLibrary.push(data);
         }
+
         addNewBook();
         closeOverlay();
         formEl.reset();
