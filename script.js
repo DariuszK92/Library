@@ -11,6 +11,16 @@ function closeOverlay() {
 
 const myLibrary = [];
 
+window.onload = function () {
+    const storedBooks = JSON.parse(localStorage.getItem('books'));
+    if (storedBooks.length > 0) {
+        for (let i = 0; i < storedBooks.length; i++) {
+            myLibrary.push(storedBooks[i]);
+        }
+    }
+    addNewBook();
+};
+
 class Book {
     constructor(title, author, pages, read) {
         this.title = title;
@@ -54,6 +64,8 @@ function addNewBook() {
         const index = myLibrary.indexOf(book);
         icon.addEventListener('click', () => {
             myLibrary.splice(index, 1);
+            localStorage.setItem('books', JSON.stringify(myLibrary));
+
             addNewBook();
         });
         newDiv.append(icon);
@@ -73,9 +85,11 @@ function addNewBook() {
             if (book.read === 'on') {
                 newDiv.classList.add('off');
                 book.read = 'off';
+                localStorage.setItem('books', JSON.stringify(myLibrary));
             } else {
                 newDiv.classList.remove('off');
                 book.read = 'on';
+                localStorage.setItem('books', JSON.stringify(myLibrary));
             }
         });
         const toggleSpan = document.createElement('span');
@@ -87,34 +101,66 @@ function addNewBook() {
 
 const formEl = document.querySelector('.form');
 const submit = document.querySelector('#submit');
+const title = document.querySelector('#title');
+const author = document.querySelector('#author');
+const pages = document.querySelector('#pages');
+
+title.addEventListener('input', () => {
+    title.setCustomValidity('');
+    if (!title.checkValidity()) {
+        title.setCustomValidity('Title must contain at least three characters');
+    } else {
+        title.setCustomValidity('');
+    }
+});
+
+author.addEventListener('input', () => {
+    author.setCustomValidity('');
+    if (!author.checkValidity()) {
+        author.setCustomValidity('Author name must contain at least three characters');
+    } else {
+        author.setCustomValidity('');
+    }
+});
+
+pages.addEventListener('input', () => {
+    pages.setCustomValidity('');
+    if (!pages.checkValidity()) {
+        pages.setCustomValidity('Page number must be between 1 and 2000');
+    } else {
+        pages.setCustomValidity('');
+    }
+});
 
 submit.addEventListener('click', (event) => {
-    event.preventDefault();
     const formData = new FormData(formEl);
-    console.log(formData.get('read'));
-    const ObjIdToFind = formData.get('title');
-    const isObjectPresent = myLibrary.find((o) => o.title === ObjIdToFind);
-    if (isObjectPresent) {
-        // As find return object else undefined
-        alert('Book with this title already exists!');
-        addNewBook();
-        closeOverlay();
-        formEl.reset();
-    } else {
-        const tit = formData.get('title');
-        const aut = formData.get('author');
-        const pag = formData.get('pages');
-        if (formData.get('read') === null) {
-            const data = new Book(tit, aut, pag, 'off');
-            myLibrary.push(data);
+    if (formEl.checkValidity()) {
+        event.preventDefault();
+        const ObjIdToFind = formData.get('title');
+        const isObjectPresent = myLibrary.find((o) => o.title === ObjIdToFind);
+        if (isObjectPresent) {
+            // As find return object else undefined
+            alert('Book with this title already exists!');
+            addNewBook();
+            closeOverlay();
+            formEl.reset();
         } else {
-            const data = new Book(tit, aut, pag, 'on');
-            myLibrary.push(data);
+            const tit = formData.get('title');
+            const aut = formData.get('author');
+            const pag = formData.get('pages');
+            if (formData.get('read') === null) {
+                const data = new Book(tit, aut, pag, 'off');
+                myLibrary.push(data);
+            } else {
+                const data = new Book(tit, aut, pag, 'on');
+                myLibrary.push(data);
+            }
+            localStorage.setItem('books', JSON.stringify(myLibrary));
+            addNewBook();
+            closeOverlay();
+            formEl.reset();
         }
-
-        addNewBook();
-        closeOverlay();
-        formEl.reset();
+    } else {
     }
 });
 
